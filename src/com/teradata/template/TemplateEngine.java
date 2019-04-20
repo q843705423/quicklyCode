@@ -1,4 +1,4 @@
-package com.teradata;
+package com.teradata.template;
 
 import com.teradata.db.DB;
 import com.teradata.db.FieldInfo;
@@ -10,12 +10,8 @@ import java.util.List;
 public class TemplateEngine {
     public static String render(String text, HashMap<String, Object> all) throws Exception {
 
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(text);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         List<FieldInfo> fieldList = (List<FieldInfo>) all.get("field");
-        System.out.println(fieldList);
         StringBuilder texts = new StringBuilder();
         for (int i = 0; i < fieldList.size(); i++) {
             String temp = text;
@@ -45,7 +41,6 @@ public class TemplateEngine {
         list.add(fieldInfo1);
         map.put("field",list);
         String con = render("<v-template field='$field.name$' >$field.comment$<v-template>",map);
-        System.out.println(con);
     }
     public static String change(String text, FieldInfo fieldInfo) throws Exception {
         String str[] = text.split("\\.");

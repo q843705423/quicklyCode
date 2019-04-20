@@ -7,7 +7,7 @@ import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.ui.Messages;
-import com.teradata.TemplateEngine;
+import com.teradata.template.TemplateEngine;
 import com.teradata.action.QuicklyCode;
 import com.teradata.db.DataBaseUtil;
 import com.teradata.db.DatabaseFactory;
@@ -18,7 +18,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -142,16 +141,11 @@ public class QuestionDialog extends JDialog {
 //        int start = caretModel.getVisualLineStart();
 //        int end = caretModel.getVisualLineEnd();
 
-//        System.out.println(start);
-//        System.out.println(end);
-        System.out.println(allCarets.size());
         for (Caret caret : allCarets) {
             int x = caret.getOffset();
             int y = caret.getLeadSelectionOffset();
             final int start = caret.getSelectionStart();
             final int end = caret.getSelectionEnd();
-            System.out.println("start"+start);
-            System.out.println("end="+end);
             DocumentWrite documentWrite = new DocumentWrite(anActionEvent);
             String content = documentWrite.get();
             content = content.substring(start,end);
@@ -165,7 +159,6 @@ public class QuestionDialog extends JDialog {
             while (target.contains("\r\n")) {
                 target = target.replace("\r\n", "\n");
             }
-            System.out.println(target);
             this.start = start;
             this.end = end;
             this.target = target;

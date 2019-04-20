@@ -26,7 +26,6 @@ public class ConfigFileChooserDialog extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         config = PropertiesComponent.getInstance();
         String path = config.getValue("path");
-        System.out.println(path);
         if (path != null && !path.isEmpty()) {
             this.path = path;
         }
