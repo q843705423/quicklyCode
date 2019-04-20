@@ -4,9 +4,11 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.psi.PsiFile;
+
+import com.intellij.openapi.command.CommandProcessor;
 import com.teradata.document.DocumentWrite;
 import com.teradata.ui.QuestionDialog;
+
 
 public class QuicklyCode extends AnAction {
 
@@ -26,12 +28,10 @@ public class QuicklyCode extends AnAction {
         int start = questionDialog.start;
         int end = questionDialog.end;
         String target = questionDialog.target;
-        Application application = ApplicationManager.getApplication();
-        application.runWriteAction(() ->{
+//        Application application = ApplicationManager.getApplication();
+        CommandProcessor.getInstance().runUndoTransparentAction(()->{
             String content = documentWrite.get();
             documentWrite.set(content.substring(0,start)+target+content.substring(end));
-//            documentWrite.replace(start,end,target);
-
         });
     }
 
