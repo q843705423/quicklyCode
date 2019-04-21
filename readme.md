@@ -12,7 +12,7 @@ code with the property values of the corresponding Datasheet fields.
 Write the following code in your entity class:
 
 ```
-public  set$field.Name$($field.type$ $field.name$){
+public void set$field.Name$($field.type$ $field.name$){
     this.$field.name$ = $field.name$;
 }
 
@@ -26,15 +26,15 @@ The corresponding code can be generated as follows:
 
 ```
 
-public  setUserId(Integer userId){
+public void setUserId(Integer userId){
     this.userId = userId;
 }
 
-public  setAccount(String account){
+public void setAccount(String account){
     this.account = account;
 }
 
-public  setPassword(String password){
+public void setPassword(String password){
     this.password = password;
 }
 
