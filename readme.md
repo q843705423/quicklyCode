@@ -25,7 +25,7 @@ this is  a table show what field can be replace.
 Write the following code in your entity class:
 
 ```
-public void set$field.Name$($field.type$ $field.name$){
+public void set$field.Name$($field.class$ $field.name$){
     this.$field.name$ = $field.name$;
 }
 
@@ -74,15 +74,32 @@ Repeat previous operations
 
 Excellent!!
 
+## HOW TO USE IT?
+
+### 1. Configuration file config.txt for creating database
+
 Configuration information of database
 
-Config.txt is as follows:
-
+config.txt is as follows:
 ```
 url =jdbc:mysql://127.0.0.1:3306/yourDatabase?characterEncoding=utf8&useSSL=false
 user = root
 password = root
 ```
 
-Please enjoy it!!!
+
+### 2. Download QuicklyCode.zip to local disk
+
+
+### 3. import zip to IDEA ,WebStorm 
+
+1. File->Setting->Plugins
+2. Choose an icon like a tire
+3. choose button of Install plugin from desk...
+4. restart IDE
+5. code $field.name$ and selected it. 
+6. Help->Find Action...
+7. input QuicklyCode and enter.
+8. input table name and choose config.txt
+9 enter and generate code.
 
