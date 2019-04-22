@@ -97,9 +97,9 @@ password = root
 2. Choose an icon like a tire
 3. choose button of Install plugin from desk...
 4. restart IDE
-5. code $field.name$ and selected it. 
+5. coding $field.name$ and selected it. 
 6. Help->Find Action...
 7. input QuicklyCode and enter.
 8. input table name and choose config.txt
-9 enter and generate code.
+9. enter and generate code.
 
