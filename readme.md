@@ -76,7 +76,7 @@ Excellent!!
 
 ## HOW TO USE IT?
 
-### 1. Configuration file config.txt for creating database
+### 1. Configuration file config.txt for connect database
 
 Configuration information of database
 
