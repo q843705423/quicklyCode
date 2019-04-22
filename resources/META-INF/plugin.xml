@@ -3,7 +3,7 @@
   <name>QuicklyCode</name>
   <version>1.0</version>
   <vendor email="843705423@qq.com" url="http://www.teradata.com">Teradata</vendor>
-
+ <depends>com.intellij.modules.lang</depends>
   <description><![CDATA[
       this is a very useful plugin that your can write code in template .<br>
       <em>most HTML tags may be used</em>
