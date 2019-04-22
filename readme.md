@@ -7,6 +7,19 @@
 This plug-in provides real-time code substitution, which replaces the selected 
 code with the property values of the corresponding Datasheet fields.
 
+this is  a table show what field can be replace.
+
+| variable|  introduce| 
+|----- |---------------|
+|$field.fieldName$| field name  |
+|$field.name$| Modify field names with hump nomenclature (lowercase first character) |
+|$field.Name$|  Modify field names with hump nomenclature (uppercase first character)  |
+|$field.type$| field type |
+|$field.class$| The attributes of fields correspond to Java types |
+|$field.comment$| Annotations to fields |
+|$field.default$| Default values for fields|
+|$field.isKey$| Are fields primary keys |
+
 ### Example
 
 Write the following code in your entity class:
