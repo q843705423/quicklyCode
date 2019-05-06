@@ -5,6 +5,11 @@ public class DB extends DataBaseUtil {
     }
 
     @Override
+    protected String getDriver() {
+        return "com.mysql.jdbc.Driver";
+    }
+
+    @Override
     protected String getUser() {
         return "root";
     }
@@ -25,6 +30,7 @@ public class DB extends DataBaseUtil {
     protected Integer getPort() {
         return 3306;
     }
+
     @Override
     protected String getIp() {
         return "10.73.134.229";

@@ -23,7 +23,7 @@ public abstract class DataBaseUtil {
     public DataBaseUtil() throws Exception {
         try {
             transactionIsOpen = false;
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(getDriver());//com.mysql.jdbc.Driver
             con = getConnection();
         } catch (ClassNotFoundException e) {
 
@@ -32,6 +32,11 @@ public abstract class DataBaseUtil {
             e.printStackTrace();
         }
     }
+
+    /**
+     * please return your database driver.
+     */
+    protected abstract String getDriver();
 
 
     /**
@@ -89,24 +94,22 @@ public abstract class DataBaseUtil {
     }
 
 
-    public static String type2Class(String type){
-        if(type.equalsIgnoreCase("int")){
+    public static String type2Class(String type) {
+        if (type.equalsIgnoreCase("int")) {
             return "Integer";
-        }else if(type.equalsIgnoreCase("bigint")){
+        } else if (type.equalsIgnoreCase("bigint")) {
             return "Long";
-        }else if(type.equalsIgnoreCase("float")){
+        } else if (type.equalsIgnoreCase("float")) {
             return "Float";
-        }
-        else if(type.contains("int")){
+        } else if (type.contains("int")) {
             return "Integer";
-        }
-        else if(type.equalsIgnoreCase("varchar")){
+        } else if (type.equalsIgnoreCase("varchar")) {
             return "String";
-        }else if(type.equalsIgnoreCase("double")){
+        } else if (type.equalsIgnoreCase("double")) {
             return "Double";
-        }else  if(type.equalsIgnoreCase("blob")){
+        } else if (type.equalsIgnoreCase("blob")) {
             return "String";
-        }else if(type.equalsIgnoreCase("date")){
+        } else if (type.equalsIgnoreCase("date")) {
             return "String";
         }
         return "String";
