@@ -28,8 +28,8 @@ this is  a table show what field can be replace.
 Write the following code in your entity class:
 
 ```
-public void set$field.Name$($field.class$ $field.name$){
-    this.$field.name$ = $field.name$;
+public void set$Name$($class$ $name$){
+    this.$name$ = $name$;
 }
 
 ```
@@ -61,7 +61,7 @@ Very cool! Isn't it?
 But IDEA already provides getter and setter, so let's try another example?
 
 ```
-< v-input placeholder='$field.comment$' id='$field.name$' />
+< v-input placeholder='$comment$' id='$name$' />
 ```
 
 Repeat previous operations
@@ -88,6 +88,14 @@ config.txt is as follows:
 url =jdbc:mysql://127.0.0.1:3306/yourDatabase?characterEncoding=utf8&useSSL=false
 user = root
 password = root
+driver=com.mysql.jdbc.Driver
+```
+if your are oracle database,your can like this
+```
+url=jdbc:oracle:thin:@127.0.0.1:1521:xe
+user = system
+password = Admin123456
+driver=oracle.jdbc.OracleDriver
 ```
 
 
@@ -100,7 +108,7 @@ password = root
 2. Choose an icon like a tire
 3. choose button of Install plugin from desk...
 4. restart IDE
-5. coding $field.name$ and selected it. 
+5. coding $name$ and selected it. 
 6. Help->Find Action...
 7. input QuicklyCode and enter.
 8. input table name and choose config.txt
