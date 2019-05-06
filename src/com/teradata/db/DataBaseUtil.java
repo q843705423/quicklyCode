@@ -27,7 +27,7 @@ public abstract class DataBaseUtil {
             con = getConnection();
         } catch (ClassNotFoundException e) {
 
-            showError("please go to download the drive about mysql for java!!!");
+            showError("please go to download the drive about "+getDriver()+" for java!!!");
         } catch (Exception e) {
             e.printStackTrace();
         }
