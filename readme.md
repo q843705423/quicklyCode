@@ -11,14 +11,17 @@ this is  a table show what field can be replace.
 
 | variable|  introduce| 
 |----- |---------------|
-|$field.fieldName$| field name  |
-|$field.name$| Modify field names with hump nomenclature (lowercase first character) |
-|$field.Name$|  Modify field names with hump nomenclature (uppercase first character)  |
-|$field.type$| field type |
-|$field.class$| The attributes of fields correspond to Java types |
-|$field.comment$| Annotations to fields |
-|$field.default$| Default values for fields|
-|$field.isKey$| Are fields primary keys |
+|$fieldName$| field name  |
+|$name$| Modify field names with hump nomenclature (lowercase first character) |
+|$Name$|  Modify field names with hump nomenclature (uppercase first character)  |
+|$NAME$| $name$ all to upperCase|
+|$type$| field type |
+|$TYPE$| $type$ all to upperCase|
+|$class$| The attributes of fields correspond to Java types |
+|$CLASS$|  $class$ all to upperCase|
+|$comment$| Annotations to fields |
+|$default$| Default values for fields|
+|$isKey$| Are fields primary keys |
 
 ### Example
 
