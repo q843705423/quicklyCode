@@ -71,8 +71,12 @@ public class TemplateEngine {
             return fieldInfo.getFieldName();
         } else if (text.equals("type")) {
             return fieldInfo.getType();
+        } else if (text.equals("TYPE")) {
+            return fieldInfo.getType().toUpperCase();
         } else if (text.equals("class")) {
             return DB.type2Class(fieldInfo.getType());
+        } else if (text.equals("CLASS")) {
+            return DB.type2Class(fieldInfo.getType()).toUpperCase();
         } else if (text.equals("NAME")) {
             String humpString = DB.underscore2hump(fieldInfo.getFieldName());
             return humpString.toUpperCase();
