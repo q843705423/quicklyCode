@@ -1,6 +1,7 @@
 package com.teradata.template;
 
 import com.teradata.db.DB;
+import com.teradata.db.DataBaseUtil;
 import com.teradata.db.FieldInfo;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TemplateEngine {
-    public static String render(String text, HashMap<String, Object> all) throws Exception {
+    public static String render(String text, HashMap<String, Object> all, DataBaseUtil dataBaseUtil) throws Exception {
 
 
         List<FieldInfo> fieldList = (List<FieldInfo>) all.get("field");
@@ -19,7 +20,7 @@ public class TemplateEngine {
                 int first = temp.indexOf("$");
                 int next = temp.indexOf("$", first + 1);
                 String anliayzed = temp.substring(first + 1, next);
-                String result = change(anliayzed, fieldList.get(i));
+                String result = change(anliayzed, fieldList.get(i), dataBaseUtil);
                 temp = temp.replace("$" + anliayzed + "$", result);
             }
             texts.append(temp);
@@ -29,21 +30,10 @@ public class TemplateEngine {
 
 
     public static void main(String... args) throws Exception {
-        HashMap<String, Object> map = new HashMap<>();
-        List<FieldInfo> list = new ArrayList<>();
-        FieldInfo fieldInfo = new FieldInfo();
-        fieldInfo.setFieldName("user_id");
-        fieldInfo.setCommit("用户Id");
-        list.add(fieldInfo);
-        FieldInfo fieldInfo1 = new FieldInfo();
-        fieldInfo1.setFieldName("username");
-        fieldInfo1.setCommit("用户名");
-        list.add(fieldInfo1);
-        map.put("field", list);
-        String con = render("<v-template field='$field.name$' >$field.comment$<v-template>", map);
+
     }
 
-    public static String change(String text, FieldInfo fieldInfo) throws Exception {
+    public static String change(String text, FieldInfo fieldInfo, DataBaseUtil db) throws Exception {
 //        String str[] = text.split("\\.");
 //        if (str.length > 2) {
 //            throw new Exception("template Exception, analysis ',' anomaly");
@@ -74,9 +64,9 @@ public class TemplateEngine {
         } else if (text.equals("TYPE")) {
             return fieldInfo.getType().toUpperCase();
         } else if (text.equals("class")) {
-            return DB.type2Class(fieldInfo.getType());
+            return db.type2Class(fieldInfo.getType());
         } else if (text.equals("CLASS")) {
-            return DB.type2Class(fieldInfo.getType()).toUpperCase();
+            return db.type2Class(fieldInfo.getType()).toUpperCase();
         } else if (text.equals("NAME")) {
             String humpString = DB.underscore2hump(fieldInfo.getFieldName());
             return humpString.toUpperCase();

@@ -27,7 +27,7 @@ public abstract class DataBaseUtil {
             con = getConnection();
         } catch (ClassNotFoundException e) {
 
-            showError("please go to download the drive about "+getDriver()+" for java!!!");
+            showError("please go to download the drive about " + getDriver() + " for java!!!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +94,7 @@ public abstract class DataBaseUtil {
     }
 
 
-    public static String type2Class(String type) {
+    public String type2Class(String type) {
         if (type.equalsIgnoreCase("int")) {
             return "Integer";
         } else if (type.equalsIgnoreCase("bigint")) {
@@ -184,7 +184,6 @@ public abstract class DataBaseUtil {
                 fields += "," + s;
                 values += "," + object2String(map.get(s));
             }
-
         }
         String sql = "insert into ${tableName}(${fields}) values(${values})"
                 .replace("${tableName}", tableName)

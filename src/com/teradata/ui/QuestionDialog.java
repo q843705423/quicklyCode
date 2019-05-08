@@ -151,7 +151,7 @@ public class QuestionDialog extends JDialog {
             content = content.substring(start,end);
             String target = null;
             try {
-                target = TemplateEngine.render(content, map);
+                target = TemplateEngine.render(content, map,dataBaseUtil);
 
             } catch (Exception e) {
                 Messages.showErrorDialog(e.getMessage(), QUICKLY_CODE);

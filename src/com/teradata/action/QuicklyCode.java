@@ -8,6 +8,7 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.ui.Messages;
+import com.teradata.db.DB;
 import com.teradata.document.DocumentWrite;
 import com.teradata.ui.QuestionDialog;
 

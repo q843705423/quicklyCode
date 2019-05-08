@@ -51,32 +51,63 @@ public class DatabaseFactory {
                 throw new Exception("database config Exception:need has :" + check + " config");
             }
         }
-        DataBaseUtil dataBaseUtil = new DataBaseUtil() {
-            @Override
-            protected String getDriver() {
-                return map.get("driver");
-            }
+        DataBaseUtil dataBaseUtil = null;
+        if (map.get("driver").contains("oracle")) {
+            dataBaseUtil = new OracleDB() {
+                @Override
+                protected String getDriver() {
+                    return map.get("driver");
+                }
 
-            @Override
-            protected String getUser() {
-                return map.get("user");
-            }
+                @Override
+                protected String getUser() {
+                    return map.get("user");
+                }
 
-            @Override
-            protected String getDatabaseName() {
-                return null;
-            }
+                @Override
+                protected String getDatabaseName() {
+                    return null;
+                }
 
-            @Override
-            protected String getPassword() {
-                return map.get("password");
-            }
+                @Override
+                protected String getPassword() {
+                    return map.get("password");
+                }
 
-            @Override
-            protected String getUrl() {
-                return map.get("url");
-            }
-        };
+                @Override
+                protected String getUrl() {
+                    return map.get("url");
+                }
+            };
+        } else {
+            dataBaseUtil = new DataBaseUtil() {
+                @Override
+                protected String getDriver() {
+                    return map.get("driver");
+                }
+
+                @Override
+                protected String getUser() {
+                    return map.get("user");
+                }
+
+                @Override
+                protected String getDatabaseName() {
+                    return null;
+                }
+
+                @Override
+                protected String getPassword() {
+                    return map.get("password");
+                }
+
+                @Override
+                protected String getUrl() {
+                    return map.get("url");
+                }
+            };
+        }
+
         return dataBaseUtil;
     }
 
