@@ -37,12 +37,15 @@ public class QuicklyCode extends AnAction {
         CommandProcessor.getInstance().runUndoTransparentAction(() -> {
             String content = documentWrite.get();
             if (content != null && content.length() != 0) {
-                Application app = ApplicationManager.getApplication();
-                app.runWriteAction(() -> {
-                    Document document = Objects.requireNonNull(e.getData(PlatformDataKeys.EDITOR)).getDocument();
-                    document.setReadOnly(false);
-                    document.setText(content.substring(0, start) + target + content.substring(end));
-                });
+                if (questionDialog.ok) {
+                    Application app = ApplicationManager.getApplication();
+                    app.runWriteAction(() -> {
+                        Document document = Objects.requireNonNull(e.getData(PlatformDataKeys.EDITOR)).getDocument();
+                        document.setReadOnly(false);
+                        document.setText(content.substring(0, start) + target + content.substring(end));
+                    });
+                }
+
             } else {
                 Messages.showErrorDialog(DO_NOT_CHOOSE_ANY_CODE, QUICKLY_CODE);
             }
