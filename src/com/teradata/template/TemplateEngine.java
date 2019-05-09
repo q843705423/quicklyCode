@@ -28,6 +28,7 @@ public class TemplateEngine {
         return texts.toString();
     }
 
+    private static Integer cnt = 0;
 
     public static void main(String... args) throws Exception {
 
@@ -57,8 +58,10 @@ public class TemplateEngine {
         } else if (text.equals("Name")) {
             String humpString = DB.underscore2hump(fieldInfo.getFieldName());
             return humpString.substring(0, 1).toUpperCase() + humpString.substring(1);
-        } else if (text.equals("fieldName")) {
+        } else if (text.equals("field")) {
             return fieldInfo.getFieldName();
+        } else if (text.equals("FIELD")) {
+            return fieldInfo.getFieldName().toUpperCase();
         } else if (text.equals("type")) {
             return fieldInfo.getType();
         } else if (text.equals("TYPE")) {
@@ -70,10 +73,24 @@ public class TemplateEngine {
         } else if (text.equals("NAME")) {
             String humpString = DB.underscore2hump(fieldInfo.getFieldName());
             return humpString.toUpperCase();
-        } else if (text.equals("FIELD_NAME")) {
-            return fieldInfo.getFieldName().toUpperCase();
+        }  else if (text.contains("random")) {
+            return randomString(8);
+        } else if (text.contains("id")) {
+            cnt++;
+            return cnt.toString();
+        } else if (text.contains("randomInt")) {
+            return String.valueOf((int) (Math.random() * 256));
         }
         return "?" + text + "?";
+    }
+
+    public static void clear() {
+        cnt = 0;
+    }
+
+    public static String randomString(int cnt) {
+        return cnt == 0 ? "" : cnt == 1 ? ((char) ('a' + Math.random() * 26)) + "" : randomString(cnt / 2) + randomString(cnt / 2);
+
     }
 
 
