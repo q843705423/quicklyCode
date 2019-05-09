@@ -64,7 +64,7 @@ public abstract class OracleDB extends DataBaseUtil {
             System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                HashMap<String, String> map = new HashMap<String, String>();
+                HashMap<String, String> map = new HashMap<>();
                 FieldInfo fieldInfo = new FieldInfo();
                 fieldInfo.setCommit(rs.getString("Comment"));
                 fieldInfo.setFieldName(rs.getString("Code").toLowerCase());
