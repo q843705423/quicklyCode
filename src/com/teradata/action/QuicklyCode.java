@@ -8,7 +8,6 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.ui.Messages;
-import com.teradata.db.DB;
 import com.teradata.document.DocumentWrite;
 import com.teradata.ui.QuestionDialog;
 
@@ -20,6 +19,7 @@ public class QuicklyCode extends AnAction {
     private DocumentWrite documentWrite;
 
     private final String QUICKLY_CODE = "QuicklyCode";
+    private final String DO_NOT_CHOOSE_ANY_CODE = "you don't choose any code";
 
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -44,7 +44,7 @@ public class QuicklyCode extends AnAction {
                     document.setText(content.substring(0, start) + target + content.substring(end));
                 });
             } else {
-                Messages.showErrorDialog("you don't choose any code", QUICKLY_CODE);
+                Messages.showErrorDialog(DO_NOT_CHOOSE_ANY_CODE, QUICKLY_CODE);
             }
         });
     }
