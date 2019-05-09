@@ -33,6 +33,7 @@ public class QuestionDialog extends JDialog {
     public int start;
     public int end;
     public String target;
+    public boolean ok = true;
 
     public void setQuicklyCode(QuicklyCode quicklyCode) {
         this.quicklyCode = quicklyCode;
@@ -68,11 +69,40 @@ public class QuestionDialog extends JDialog {
             configText.setText(path);
         }
         chooseFileButton.addActionListener(e -> {
-            ConfigFileChooserDialog configFileChooserDialog = new ConfigFileChooserDialog();
-            configFileChooserDialog.setVisible(true);
-            configFileChooserDialog.pack();
-            path = configFileChooserDialog.getPath();
-            configText.setText(path);
+            JFileChooser jFileChooser = new JFileChooser();
+            if (config != null) {
+                File file = new File(String.valueOf(path));
+                if (file.exists()) {
+                    jFileChooser.setSelectedFile(file);
+                }
+            }
+            jFileChooser.setVisible(true);
+            jFileChooser.addActionListener(l -> {
+                System.out.println(l);
+                if (l.getActionCommand().equalsIgnoreCase("ApproveSelection")) {
+                    path = jFileChooser.getSelectedFile().getAbsolutePath();
+                    configText.setText(path);
+                }
+            });
+            jFileChooser.showOpenDialog(null);
+            /*JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.setVisible(true);
+            jFileChooser.setDialogTitle("please to choose database config");
+            jFileChooser.addActionListener(e1 -> {
+                System.out.println(e1.getActionCommand());
+                if (e1.getActionCommand().equals("ok")) {
+
+                } else {
+
+                }
+            });*/
+
+//            jFileChooser.setSelectedFile();
+//            ConfigFileChooserDialog configFileChooserDialog = new ConfigFileChooserDialog();
+//            configFileChooserDialog.setVisible(true);
+//            configFileChooserDialog.pack();
+//            path = configFileChooserDialog.getPath();
+//            configText.setText(path);
         });
         buttonOK.addActionListener(e -> onOK());
 
@@ -93,6 +123,8 @@ public class QuestionDialog extends JDialog {
     public final String QUICKLY_CODE = "QuicklyCode";
 
     private void onOK() {
+
+        TemplateEngine.clear();
 
         String table = tableNameText.getText();
         if (table == null || table.isEmpty()) {
@@ -133,8 +165,8 @@ public class QuestionDialog extends JDialog {
 
 
         Editor editor = PlatformDataKeys.EDITOR.getData(anActionEvent.getDataContext());
-        if(editor==null){
-            Messages.showErrorDialog("please choose a area to replace",QUICKLY_CODE);
+        if (editor == null) {
+            Messages.showErrorDialog("please choose a area to replace", QUICKLY_CODE);
         }
         CaretModel caretModel = editor.getCaretModel();
         List<Caret> allCarets = caretModel.getAllCarets();
@@ -148,10 +180,10 @@ public class QuestionDialog extends JDialog {
             final int end = caret.getSelectionEnd();
             DocumentWrite documentWrite = new DocumentWrite(anActionEvent);
             String content = documentWrite.get();
-            content = content.substring(start,end);
+            content = content.substring(start, end);
             String target = null;
             try {
-                target = TemplateEngine.render(content, map,dataBaseUtil);
+                target = TemplateEngine.render(content, map, dataBaseUtil);
 
             } catch (Exception e) {
                 Messages.showErrorDialog(e.getMessage(), QUICKLY_CODE);
@@ -167,12 +199,13 @@ public class QuestionDialog extends JDialog {
             break;
         }
 
-
+        ok = true;
         dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
+        ok = false;
         dispose();
     }
 
