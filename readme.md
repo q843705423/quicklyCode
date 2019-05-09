@@ -11,7 +11,8 @@ this is  a table show what field can be replace.
 
 | variable|  introduce| 
 |----- |---------------|
-|$fieldName$| field name  |
+|$field$| field name  |
+|$FIELD$| field name all to uppercase |
 |$name$| Modify field names with hump nomenclature (lowercase first character) |
 |$Name$|  Modify field names with hump nomenclature (uppercase first character)  |
 |$NAME$| $name$ all to upperCase|
@@ -22,6 +23,9 @@ this is  a table show what field can be replace.
 |$comment$| Annotations to fields |
 |$default$| Default values for fields|
 |$isKey$| Are fields primary keys |
+|$id$|  1,2,3...|
+|$random$| random String  8 length|
+|$randomInt$| 0  - 255 random Integer|
 
 ### Example
 
