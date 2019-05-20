@@ -21,6 +21,7 @@ public class TemplateEngine {
                 int next = temp.indexOf("$", first + 1);
                 String anliayzed = temp.substring(first + 1, next);
                 String result = change(anliayzed, fieldList.get(i), dataBaseUtil);
+                result = result == null ? "null" : result ;
                 temp = temp.replace("$" + anliayzed + "$", result);
             }
             texts.append(temp);
@@ -73,12 +74,12 @@ public class TemplateEngine {
         } else if (text.equals("NAME")) {
             String humpString = DB.underscore2hump(fieldInfo.getFieldName());
             return humpString.toUpperCase();
-        }  else if (text.contains("random")) {
+        }  else if (text.equals("random")) {
             return randomString(8);
-        } else if (text.contains("id")) {
+        } else if (text.equals("id")) {
             cnt++;
             return cnt.toString();
-        } else if (text.contains("randomInt")) {
+        } else if (text.equals("randomInt")) {
             return String.valueOf((int) (Math.random() * 256));
         }
         return "?" + text + "?";
